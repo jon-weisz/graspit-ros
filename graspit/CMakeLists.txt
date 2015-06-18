@@ -14,13 +14,18 @@ catkin_package(
 
 include_directories(${catkin_INCLUDE_DIRS})
 
+set(GRASPIT_REVISION 61fec) #The version of GraspIt to check out after cloning the repository.
+
+
 add_custom_command(
   OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/graspit_source/graspit.pro
-  COMMAND svn co svn://svn.code.sf.net/p/graspit/code/trunk -r157 graspit_source
+  COMMAND git clone https://github.com/roamlab/graspit.git graspit_source
+  COMMAND git --git-dir=${CMAKE_CURRENT_SOURCE_DIR}/graspit_source/.git --work-tree=${CMAKE_CURRENT_SOURCE_DIR}/graspit_source/.git checkout ${GRASPIT_REVISION} #Run git command in source directory to checkout tested revision
   COMMAND patch -N -d graspit_source -p0 < graspit_project.patch
   COMMAND patch -N -d graspit_source -p0 < graspit_dbase.patch
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
 
 add_custom_target(graspit_build ALL
   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/graspit_source/graspit.pro
