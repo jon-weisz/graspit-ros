@@ -31,7 +31,7 @@ endif(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/graspit_source)
 
 add_custom_target(graspit_build ALL
   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/graspit_source/graspit.pro
-  COMMAND qmake -qt=4 -o MakefileQmake " EXT_DESTDIR = ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}" ${CMAKE_CURRENT_SOURCE_DIR}/graspit_source/graspit.pro 
+  COMMAND qmake -o MakefileQmake " EXT_DESTDIR = ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}" ${CMAKE_CURRENT_SOURCE_DIR}/graspit_source/graspit.pro 
   COMMAND make -f MakefileQmake
 )
 
