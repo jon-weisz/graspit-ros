@@ -9,10 +9,10 @@ find_package(catkin REQUIRED COMPONENTS ${PACKAGE_DEPS})
 
 catkin_package(
   CATKIN_DEPENDS ${PACKAGE_DEPS}
-  INCLUDE_DIRS . graspit_source graspit_source/include
+  INCLUDE_DIRS . graspit_source graspit_source/include graspit_source/src
 )
 
-include_directories(${catkin_INCLUDE_DIRS})
+include_directories(${catkin_INCLUDE_DIRS} graspit_source/src/Collision)
 
 set(GRASPIT_REVISION 61fec) #The version of GraspIt to check out after cloning the repository.
 
